@@ -7,6 +7,8 @@ class DynArray:
     def __init__(self, max_size=4):
         '''
             max_size of the given array
+            Keyword arguments:
+            max_size -- the maximum size of the array (default 4)
         '''
         self._max_size = max_size
         self._cur_size = 0
@@ -14,9 +16,13 @@ class DynArray:
 
     def insert(self, index, value):
         '''
-            index: index at which you want to insert value
-            value: given value (int, float, string)
+        inserts given value at a given index
+
+        Keyword arguments:
+        index -- integer index at which you want to insert value
+        value -- given value to be inserted (can be int, float, string)
         '''
+
         # if index >= cur_size + 1
         if index > self._cur_size:
             print('check size of cur array before inserting')
@@ -38,8 +44,12 @@ class DynArray:
 
     def remove(self, value):
         '''
-            value: given value to be removed
+        removes the given value from dynamic array
+
+        Keyword arguments:
+        value -- given value to be removed
         '''
+
         # remove the value
         # udpate current size
         # check if empty
@@ -58,7 +68,12 @@ class DynArray:
 
     def get_val_at_index(self, index):
         '''
+        retreives the value at a given index
+
+        Keyword arguments:
+        index -- index at which we want values
         '''
+
         # check if empty, return
         if (self._cur_size == 0) or (index > self._cur_size) or (index < 0):
             # print('array empty')
@@ -68,6 +83,14 @@ class DynArray:
         return self._array[index]
 
     def set_val_at_index(self, index, value):
+        '''
+        sets the value at a given index
+
+        Keyword arguments:
+        index -- index at which we want to set the value
+        value -- value to be assigned
+        '''
+
         # check if empty, return
         if (self._cur_size == 0) or (index > self._cur_size) or (index < 0):
             # print('array empty')
@@ -77,6 +100,13 @@ class DynArray:
         self._array[index] = value
 
     def append(self, value):
+        '''
+        appends the given value at the end of the dynamic array
+
+        Keyword arguments:
+        value -- value to be appended at the end of the dynamic array
+        '''
+
         # check if appending will exceed size
         # if not, insert at end
         # udpate current size
@@ -90,27 +120,45 @@ class DynArray:
         self._cur_size += 1
 
     def print_array(self):
+        '''
+        print the content of the dynamic array
+        '''
         print('---dyn array contents---')
         for i in range(self._cur_size):
             print(self._array[i], end=', ')
         print('---')
 
     def clear(self):
+        '''
+        clear given array and sets size to zero.
+        '''
         self._array = [None]*self._max_size
         self._cur_size = 0
 
     def __get_max_size(self):
+        '''
+        returns max size of the current dynamic array
+        '''
         return self._max_size
 
     def __check_if_full(self):
+        '''
+        to check if the dynamic array is full
+        '''
         # check if current size == max size of array
         return self._cur_size == self._max_size
 
     def __check_if_empty(self):
+        '''
+        to check if the dynamic array is empty
+        '''
         # check if current size == 0
         return self._cur_size == 0
 
     def __increase_size(self):
+        '''
+        double the size of array when at capacity
+        '''
         # lets create a new array with double the max_size of current array
         # copy over the elements
 
@@ -148,7 +196,7 @@ if __name__ == "__main__":
     array.insert(7, 41)
     array.print_array()
     # print(array.get_val_at_index(7))
-    print(array.set_val_at_index(5, -1))
+    # print(array.set_val_at_index(5, -1))
     array.print_array()
     array.clear()
     array.print_array()
