@@ -4,6 +4,9 @@ My implementation of dynamic array
 
 
 class DynArray:
+    '''
+    Implements Dyamic Array using simple python list
+    '''
     def __init__(self, max_size=4):
         '''
             max_size of the given array
@@ -13,6 +16,7 @@ class DynArray:
         self._max_size = max_size
         self._cur_size = 0
         self._array = [None]*self._max_size
+        self._new_array = None
 
     def insert(self, index, value):
         '''
@@ -40,7 +44,6 @@ class DynArray:
             self._array[i] = self._array[i-1]
         self._array[index] = value
         self._cur_size += 1
-        pass
 
     def remove(self, value):
         '''
@@ -119,7 +122,7 @@ class DynArray:
         # udpate size
         self._cur_size += 1
 
-    def print_array(self):
+    def print_all(self):
         '''
         print the content of the dynamic array
         '''
@@ -174,29 +177,29 @@ class DynArray:
 
 
 if __name__ == "__main__":
-    array = DynArray()
+    array_obj = DynArray()
     # for i in range(100):
-    #     array.append(i*10)
+    #     array_obj.append(i*10)
     #     if i % 20 == 0:
     #         print(i)
     #         time.sleep(1)
-    array.print_array()
-    array.append(10)
-    array.append(20)
-    array.append(30)
-    array.append(40)
-    # array.append(50)
-    array.print_array()
-    array.insert(1, 11)
-    array.insert(2, 12)
-    array.insert(3, 13)
-    array.insert(4, 18)
-    array.print_array()
-    array.remove(10)
-    array.insert(7, 41)
-    array.print_array()
-    # print(array.get_val_at_index(7))
-    # print(array.set_val_at_index(5, -1))
-    array.print_array()
-    array.clear()
-    array.print_array()
+    array_obj.print_all()
+    array_obj.append(10)
+    array_obj.append(20)
+    array_obj.append(30)
+    array_obj.append(40)
+    # array_obj.append(50)
+    array_obj.print_all()
+    array_obj.insert(1, 11)
+    array_obj.insert(2, 12)
+    array_obj.insert(3, 13)
+    array_obj.insert(4, 18)
+    array_obj.print_all()
+    array_obj.remove(10)
+    array_obj.insert(7, 41)
+    array_obj.print_all()
+    # print(array_obj.get_val_at_index(7))
+    # print(array_obj.set_val_at_index(5, -1))
+    array_obj.print_all()
+    array_obj.clear()
+    array_obj.print_all()
