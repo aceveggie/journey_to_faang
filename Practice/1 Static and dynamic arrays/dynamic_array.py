@@ -26,7 +26,6 @@ class DynArray:
         index -- integer index at which you want to insert value
         value -- given value to be inserted (can be int, float, string)
         '''
-
         # if index >= cur_size + 1
         if index > self._cur_size:
             print('check size of cur array before inserting')
