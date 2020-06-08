@@ -43,6 +43,7 @@ class DoubleList:
         # reset head and tail
         self.head = None
         self.tail = None
+        self._length = 0
 
     def _add_first(self, data_val):
         cur_head = self.head
@@ -70,9 +71,38 @@ class DoubleList:
 
     def get_length(self, index):
         pass
-    
+
     def get_first(self):
         return self.head.data
 
     def get_last(self):
         return self.tail.data
+
+if __name__ == "__main__":
+    print('done')
+    list_obj = DoubleList(10)
+    list_obj.append(20)
+    list_obj.append(30)
+    list_obj.append(40)
+    list_obj.print_all()
+    # list_obj.clear()
+    list_obj.insert(4, 5)
+    list_obj.insert(4, 50)
+    list_obj.print_all()
+    print(list_obj.get_first())
+    print(list_obj.get_last())
+    list_obj.print_all()
+    list_obj.remove(1)
+    list_obj.print_all()
+    list_obj.remove(1)
+    list_obj.print_all()
+    list_obj.remove(1)
+    list_obj.print_all()
+    list_obj.remove(1)
+    list_obj.print_all()
+    list_obj.remove(1)
+    list_obj.print_all()
+    # list_obj.remove(1)
+    list_obj.print_all()
+    print(list_obj.get_first())
+    print(list_obj.get_last())
