@@ -81,6 +81,8 @@ class List:
         self._length += 1
 
     def get_index(self, data_val):
+        # iterate
+        # get the value at given index
         cur_node = self.head
         idd = 0
         while cur_node.next is not None:
@@ -91,12 +93,15 @@ class List:
         return -1
 
     def get_first(self):
+        # get first
         return self.head.data
 
     def get_last(self):
+        # get last
         return self.tail.data
 
     def _remove_first(self):
+        # remove first
         cur_head_next = self.head
         del self.head
         self.head = cur_head_next
@@ -134,6 +139,7 @@ class List:
         pass
 
     def print_all(self):
+        # iterate and print all
         cur_node = self.head
         while cur_node is not None:
             print(cur_node.data, end=' ')
@@ -144,6 +150,7 @@ class List:
         return self._length
 
     def clear(self):
+        # iterate and clear
         cur_node = self.head
         while cur_node is not None:
             next_node = cur_node.next
