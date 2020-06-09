@@ -5,29 +5,37 @@ Single linked list implementation
 
 class Node:
     '''
-    basic definition of a singly linked list node
+    basic definition of a doubly linked list node
     '''
     def __init__(self, data):
         self.next = None
         self.prev = None
         self.data = data
-    
+
     def __str__(self):
         return str(self.data)
-    
+
     def __repr__(self):
         return str(self.data)
 
 
 class DoubleList:
-
+    '''
+    basic definition of a doubly linked list
+    '''
     def __init__(self, data_val):
+        '''
+        constructor
+        '''
         new_node = Node(data_val)
         self.head = new_node
         self.tail = new_node
         self._length = 1
 
     def print_all(self):
+        '''
+        print all
+        '''
         if self._length <= 0:
             return
         cur_node = self.head
@@ -37,6 +45,9 @@ class DoubleList:
         print()
 
     def clear(self):
+        '''
+        clear contents
+        '''
         if self._length <= 0:
             return
         cur_node = self.head
@@ -108,8 +119,18 @@ class DoubleList:
             self.tail = cur_tail.prev
             self.tail.next = None
 
+    def get_val(self, index):
+        if self._length == 0:
+            return
+        idd = 0
+        cur_node = self.head
+        while idd != index and cur_node is not None:
+            cur_node = cur_node.next
+            idd += 1
+        return cur_node
+
     def remove(self, index):
-        print('removing node at index', index)
+        # print('removing node at index', index, 'val:', self.get_val(index))
         if index == 0:
             self._remove_first()
         elif index == self._length - 1:
@@ -126,50 +147,42 @@ class DoubleList:
             cur_node.next.prev = prev_node
         self._length -= 1
 
-    def get_length(self, index):
-        self._length
+    def get_length(self):
+        return self._length
 
     def get_first(self):
         return self.head.data
 
     def get_last(self):
         return self.tail.data
-    
+
     def _debug(self):
         cur_node = self.head
         print('---')
+        self.print_all()
+        print('--------')
         while cur_node is not None:
-            print('cur node: ', cur_node.prev,'<-->',cur_node.data, '<-->', cur_node.next)
+            print(
+                'cur node: ', cur_node.prev, '<-->', cur_node.data, '<-->',
+                cur_node.next)
             cur_node = cur_node.next
         print('--------------------')
+
 
 if __name__ == "__main__":
     print('done')
     list_obj = DoubleList(10)
-    list_obj._debug()
     list_obj.append(20)
-    list_obj._debug()
     list_obj.append(30)
-    list_obj._debug()
     list_obj.append(40)
-    list_obj._debug()
-    # list_obj.clear()
     list_obj.insert(4, 5)
-    list_obj._debug()
     list_obj.insert(5, 50)
-    list_obj._debug()
-    #list_obj._debug()
+    list_obj.insert(6, 60)
+    list_obj.print_all()
+    list_obj.remove(0)
+    list_obj.remove(5)
     list_obj.remove(1)
-    # list_obj.print_all()
-    list_obj._debug()
-    list_obj.remove(1)
-    # list_obj.print_all()
-    list_obj._debug()
-    # list_obj.remove(1)
-    # list_obj.print_all()
-    # #list_obj._debug()
-    # list_obj.remove(1)
-    # list_obj.print_all()
-    # #list_obj._debug()
-    # print(list_obj.get_first())
-    # print(list_obj.get_last())
+    list_obj.remove(2)
+    list_obj.print_all()
+    list_obj.clear()
+    print(list_obj.get_length())
