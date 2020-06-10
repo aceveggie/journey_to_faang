@@ -24,7 +24,8 @@ class SinglyLinkedListStack:
     '''
     def __init__(self, data_val):
         self.head = Node(data_val)
-        self.size = 0
+        self.size = 1
+        self.pointer = self.head
 
     def push(self, data_val):
         new_node = Node(data_val)
@@ -59,23 +60,6 @@ class SinglyLinkedListStack:
             cur_node = cur_node.prev
         print()
 
-    def __iter__(self):
-        '''
-        make it iterable
-        '''
-        return self
-
-    def __next__(self):
-        '''
-        make it iterable
-        '''
-        if self.head is None:
-            raise StopIteration
-        else:
-            ret_node = self.head
-            self.head = self.head.prev
-            return ret_node
-
 
 if __name__ == "__main__":
     stack_obj = SinglyLinkedListStack(10)
@@ -91,7 +75,5 @@ if __name__ == "__main__":
     print('popping', stack_obj.pop())
     stack_obj.print_all()
     # test its iterative properities
-    # print(list(stack_obj))
     print('testing iteration')
-    for each in stack_obj:
-        print(each)
+    stack_obj.print_all()
