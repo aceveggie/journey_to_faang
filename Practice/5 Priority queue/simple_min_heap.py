@@ -1,6 +1,6 @@
 '''
     Implement simple priority queue using a heap
-    Implementing a min heap
+    Implementing a min heap with O(N) removal
     Implementing a min heap using array (list in python)
 '''
 
@@ -24,6 +24,7 @@ class SimplePriorityQueue:
             if parent_index is None:
                 break
             is_current_index_less_than_parent = self._less(index, parent_index)
+            # your search space is reducing over time. So Log(N) complexity
             if is_current_index_less_than_parent:
                 # swap elements and indices
                 self.array[index], self.array[parent_index] =\
@@ -31,6 +32,9 @@ class SimplePriorityQueue:
                 index = parent_index
 
     def bubble_down(self, index):
+        '''
+            Iteratively search space reduces by half
+        '''
         # iteratively bubble down element at index
         # until we satisfy heap invariant property
         # To bubble down, swap current index element with smaller
@@ -41,6 +45,7 @@ class SimplePriorityQueue:
             left_child_val = self.get_left_child_value(index)
             right_child_val = self.get_right_child_value(index)
             # cur_val = self._get(index)
+            # your search space is reducing over time. So O(log(N)) complexity
             if left_child_val <= right_child_val:
                 self.array[index], self.array[left_child_index] =\
                     self.array[left_child_index], self.array[index]
@@ -51,6 +56,10 @@ class SimplePriorityQueue:
                 right_child_index, index = index, right_child_index
 
     def insert(self, value):
+        '''
+        Inserting itself is constant. However, restoring heap invariant
+            takes log time
+        '''
         # insert at leaf,
         # then bubble up
         # print('inserting', value, 'in', self.array)
@@ -214,14 +223,28 @@ class SimplePriorityQueue:
         # we haven't seen any violation of heap_invariant
         return True
 
-    # def check_recursive_heap_invariant(self, index):
-    #     # from given index check top to bottom
-    #     # left to right
-    #     # do we satisfy heap invariance?
+    def check_recursive_heap_invariant(self, index):
+        # from given index check top to bottom
+        # left to right
+        # do we satisfy heap invariance?
 
-    #     # we have moved out of bounds without violating the property
-    #     if index >= self.heap_size:
-    #         return True
+        # we have moved out of bounds without violating the property
+        if index >= self.heap_size:
+            return True
+        # parent is current node 'index'
+
+        l_index = (2*index) + 1
+        r_index = (2*index) + 2
+
+        # if we are within range and current index is greater than child
+        if l_index < self.heap_size and self._less(index, l_index) is False:
+            return False
+        # if we are within range and current index is greater than child
+        if r_index < self.heap_size and self._less(index, r_index) is False:
+            return False
+
+        return self.check_recursive_heap_invariant(l_index) and\
+            self.check_recursive_heap_invariant(r_index)
 
     def _get(self, i):
         # return element at index i
