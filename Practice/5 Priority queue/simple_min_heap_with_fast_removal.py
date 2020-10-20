@@ -165,18 +165,33 @@ class SimplePriorityQueue:
         self.hash_map_update(i, i_val, j, j_val)
 
         self.array[i], self.array[j] = self.array[j], self.array[i]
-        
 
     def contains(self, value):
         # check if element contains a specific value
-        # O(N) or O(heap_capacity) implementation
-        for i in range(self.heap_size):
-            if self._get(i) == value:
-                return True
-        return False
+        # if we use array, to check, it would be array O(N)
+        # if we use hashmaps to check, it would be O(1)
+
+        # following is 
+        # O(N) or O(heap_capacity) implementation for array implementation
+        # for i in range(self.heap_size):
+        #     if self._get(i) == value:
+        #         return True
+        # return False
+
+        # following is
+        # O(1) approach
+        try:
+            _ = self.hash_map[value]
+            return True
+        except Exception:
+            return False
 
     def disp(self):
         print(self.array)
+
+    def disp_hash_map(self):
+        for k, v in self.hash_map.items():
+            print(k, v)
 
     def is_empty(self):
         return self.heap_size == 0
@@ -274,10 +289,15 @@ class SimplePriorityQueue:
         try:
             # identify specific list using 'val'
             self.hash_map[val].remove(index)  # remove value which is 'index'
-        except Exception:
+            if len(self.hash_map[val]) == 0:
+                # empty dictionary, remove the value
+                self.hash_map.pop(val)
+
+        except Exception as e:
             print(self.hash_map)
             print(
                 'tried to remove val', val, 'from index', index, 'in hashmap')
+            print(e)
             raise
 
     def hash_map_update(self, i, i_val, j, j_val):
@@ -327,3 +347,4 @@ if __name__ == "__main__":
     print('heap invariant', q_obj.check_recursive_heap_invariant())
     q_obj.check_heap_invariant()
     q_obj.disp()
+    # q_obj.disp_hash_map()
