@@ -1,2 +1,10 @@
 *.pyc
 *.vscode
+*.gradle
+*.idea
+
+build/
+gradle/
+dependencies/
+
+
